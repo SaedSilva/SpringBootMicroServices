@@ -1,8 +1,10 @@
 package br.dev.saed.userserviceapi.service;
 
 import br.dev.saed.userserviceapi.entity.User;
+import br.dev.saed.userserviceapi.mapper.UserMapper;
 import br.dev.saed.userserviceapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import models.reponses.UserResponse;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 public class UserService {
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public User findById(final String id) {
-        return userRepository.findById(id).orElse(null);
+    public UserResponse findById(final String id) {
+        return userMapper.fromEntity(userRepository.findById(id).orElse(null));
+//        return userRepository.findById(id).orElse(null);
     }
 }

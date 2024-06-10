@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import models.exceptions.StandardError;
 import models.reponses.UserResponse;
 import models.requests.CreateUserRequest;
@@ -45,5 +46,5 @@ public interface UserController {
     })
     @Operation(summary = "Save new user")
     @PostMapping
-    ResponseEntity<Void> save(@RequestBody final CreateUserRequest createUserRequest);
+    ResponseEntity<Void> save(@Valid @RequestBody final CreateUserRequest createUserRequest);
 }

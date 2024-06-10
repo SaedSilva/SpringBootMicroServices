@@ -7,5 +7,11 @@ spring:
       uri: mongodb+srv://saedsousa:saedsousa@cluster0.600aigh.mongodb.net/helpdeskdb?retryWrites=true&w=majority&appName=Cluster0
       auto-index-creation: true
 
+springdoc:
+  openapi:
+    title: 'User Service API'
+    description: 'Component responsible for user management created on formacao BackEnd Expert with Valdir Cezar'
+    version: 1.0.0
+
 server:
   port: 8090

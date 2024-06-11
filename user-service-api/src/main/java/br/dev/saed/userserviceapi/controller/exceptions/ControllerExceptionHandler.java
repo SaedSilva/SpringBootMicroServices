@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.*;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -58,12 +57,12 @@ public class ControllerExceptionHandler {
         var error = StandardError
                 .builder()
                 .timestamp(LocalDateTime.now())
-                .status(BAD_REQUEST.value())
-                .error(BAD_REQUEST.getReasonPhrase())
+                .status(CONFLICT.value())
+                .error(CONFLICT.getReasonPhrase())
                 .message(ex.getMessage())
                 .path(request.getRequestURI())
                 .build();
 
-        return ResponseEntity.badRequest().body(error);
+        return ResponseEntity.status(CONFLICT).body(error);
     }
 }

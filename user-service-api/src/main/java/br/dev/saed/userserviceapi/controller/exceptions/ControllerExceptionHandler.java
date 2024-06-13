@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import static org.springframework.http.HttpStatus.*;
 
-@ControllerAdvice
+@ControllerAdvice // Essa anotação faz com que a classe seja reconhecida como um interceptador de exceções
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)

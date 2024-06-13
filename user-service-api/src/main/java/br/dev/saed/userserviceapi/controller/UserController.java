@@ -87,6 +87,6 @@ public interface UserController {
     @PutMapping("/{id}")
     ResponseEntity<UserResponse> update(
             @Parameter(description = "User id", required = true, example = "6655e589b867cd6d42f32c9f")
-            @PathVariable(name = "id") final String id, 
+            @PathVariable(name = "id") final String id,
             @Valid @RequestBody final UpdateUserRequest updateUserRequest);
 }

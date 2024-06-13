@@ -12,6 +12,7 @@ import jakarta.validation.Valid;
 import models.exceptions.StandardError;
 import models.reponses.UserResponse;
 import models.requests.CreateUserRequest;
+import models.requests.UpdateUserRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -69,4 +70,23 @@ public interface UserController {
     })
     @GetMapping
     ResponseEntity<List<UserResponse>> findAll();
+
+    @Operation(summary = "Update user")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200", description = "User updated",
+                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = UserResponse.class))),
+            @ApiResponse(
+                    responseCode = "400", description = "Invalid request",
+                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = StandardError.class))),
+            @ApiResponse(
+                    responseCode = "404", description = "User not found",
+                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = StandardError.class)))
+
+    })
+    @PutMapping("/{id}")
+    ResponseEntity<UserResponse> update(
+            @Parameter(description = "User id", required = true, example = "6655e589b867cd6d42f32c9f")
+            @PathVariable(name = "id") final String id, 
+            @Valid @RequestBody final UpdateUserRequest updateUserRequest);
 }

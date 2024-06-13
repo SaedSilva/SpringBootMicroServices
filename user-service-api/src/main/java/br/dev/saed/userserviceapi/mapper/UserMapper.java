@@ -3,8 +3,10 @@ package br.dev.saed.userserviceapi.mapper;
 import br.dev.saed.userserviceapi.entity.User;
 import models.reponses.UserResponse;
 import models.requests.CreateUserRequest;
+import models.requests.UpdateUserRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
 import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
@@ -15,4 +17,8 @@ public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
     User fromRequest(CreateUserRequest createUserRequest);
+
+
+    @Mapping(target = "id", ignore = true)
+    User update(UpdateUserRequest updateUserRequest, @MappingTarget User entity);
 }
